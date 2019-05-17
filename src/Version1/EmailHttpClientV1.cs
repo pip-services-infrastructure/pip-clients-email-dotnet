@@ -18,11 +18,11 @@ namespace PipServices.Email.Client.Version1
             if (config != null) this.Configure(thisConfig);
         }
 
-        public Task SendMessageAsync(string correlationId, EmailMessageV1 message, ConfigParams parameters)
+        public async Task SendMessageAsync(string correlationId, EmailMessageV1 message, ConfigParams parameters)
         {
             using (var timing = Instrument(correlationId))
             {
-                return CallCommandAsync<Task>(
+                await CallCommandAsync<Task>(
                     "send_message",
                     correlationId,
                     new
@@ -34,11 +34,11 @@ namespace PipServices.Email.Client.Version1
             }
         }
 
-        public Task SendMessageToRecipientAsync(string correlationId, EmailRecipientV1 recipient, EmailMessageV1 message, ConfigParams parameters)
+        public async Task SendMessageToRecipientAsync(string correlationId, EmailRecipientV1 recipient, EmailMessageV1 message, ConfigParams parameters)
         {
             using (var timing = Instrument(correlationId))
             {
-                return CallCommandAsync<Task>(
+                await CallCommandAsync<Task>(
                     "send_message_to_recipient",
                     correlationId,
                     new
@@ -51,11 +51,11 @@ namespace PipServices.Email.Client.Version1
             }
         }
 
-        public Task SendMessageToRecipientsAsync(string correlationId, EmailRecipientV1[] recipients, EmailMessageV1 message, ConfigParams parameters)
+        public async Task SendMessageToRecipientsAsync(string correlationId, EmailRecipientV1[] recipients, EmailMessageV1 message, ConfigParams parameters)
         {
             using (var timing = Instrument(correlationId))
             {
-                return CallCommandAsync<Task>(
+                await CallCommandAsync<Task>(
                     "send_message_to_recipients",
                     correlationId,
                     new
